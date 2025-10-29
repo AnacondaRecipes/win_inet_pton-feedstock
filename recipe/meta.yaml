@@ -5,18 +5,19 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/w/win_inet_pton/win_inet_pton-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/w/win_inet_pton/win_inet_pton-{{ version }}.tar.gz
   sha256: dd03d942c0d3e2b1cf8bab511844546dfa5f74cb61b241699fa379ad707dea4f
 
 build:
-  number: 0
-  skip: True  # [not win]
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  number: 1
+  skip: true  # [not win]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   host:
     - python
     - pip
+    - setuptools
   run:
     - python
 
@@ -28,7 +29,7 @@ about:
   home: https://github.com/hickeroar/win_inet_pton
   license: PUBLIC-DOMAIN
   license_file: LICENSE
-  summary: 'Native inet_pton and inet_ntop implementation for Python on Windows (with ctypes).'
+  summary: Native inet_pton and inet_ntop implementation for Python on Windows (with ctypes).
   dev_url: https://github.com/hickeroar/win_inet_pton
 
 extra:
